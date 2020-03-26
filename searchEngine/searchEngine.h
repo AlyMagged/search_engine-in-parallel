@@ -1,15 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-int searchEngine(char [], char[]) ;
-int main(int argc, char const *argv[])
-{
-    char sentence[50] ;
-    printf("Enter sentence to search : ") ;
-    gets(sentence) ;
-
-    printf("counter is %d", searchEngine("test.txt", sentence)) ;
-    return 0;
-}
 int searchEngine(char fileName[50] , char sentence[50] )
 {
     char* p;
