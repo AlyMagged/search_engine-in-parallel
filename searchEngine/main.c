@@ -1,48 +1,54 @@
-#include <stdlib.h>
-#include <stdio.h>
-int searchEngine(char [], char[]) ;
-int main(int argc, char const *argv[])
+// This example is provided by:
+// http://www.codingunit.com Programming Tutorials
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int Search_in_File(char *str, char *fname);
+
+int main(int argc, char *argv[])
 {
-    char sentence[50] ;
-    printf("Enter sentence to search : ") ;
+    char sentence[100] ;
+    int counter ;
+    printf("Please Enter the sentence: ") ;
     gets(sentence) ;
+	counter = Search_in_File("test.txt", sentence);
 
-    printf("counter is %d", searchEngine("test.txt", sentence)) ;
-    return 0;
-}
-int searchEngine(char fileName[50] , char sentence[50] )
-{
-    char* p;
-    FILE * fp;
-    char * line = NULL;
-    size_t len = 0;
-    ssize_t read;
-
-    int counter =0 ;
-
-    fp = fopen("test.txt", "r");
-    if (fp == NULL)
-        exit(EXIT_FAILURE);
-
-
-    while ((read = getline(&line, &len, fp)) != -1)
-    {
-        p = strstr(line, sentence);
-        if (p)
-        {
-            counter++ ;
-            printf("\n%s found in line = %s \nwhere %s\n", sentence, line, p);
-            printf("-----------------------------------------------------\n") ;
-        }
-
-    }
-
-    printf("number of repeated  = %d", counter);
-
-    fclose(fp);
-    if (line)
-        free(line);
-    exit(EXIT_SUCCESS);
-    return counter ;
+	printf("\ncounter is : %d", counter) ;
+	return(0);
 }
 
+int Search_in_File(char *fname, char *str) {
+	FILE *fp;
+	int line_num = 1;
+	int find_result = 0;
+	char temp[512];
+
+
+	if((fp = fopen(fname, "r")) == NULL) {
+		return(-1);
+	}
+
+
+	while(fgets(temp, 512, fp) != NULL)
+	{
+//        printf("%s",temp) ;
+		if(strstr(temp, str) != NULL)
+		{
+			printf("A match found on line: %d\n", line_num);
+			printf("\n%s\n", temp);
+			find_result++;
+		}
+		line_num++;
+	}
+
+	if(find_result == 0) {
+		printf("\nSorry, couldn't find a match.\n");
+	}
+
+	if(fp) {
+		fclose(fp);
+	}
+   	return find_result;
+}
