@@ -3,7 +3,9 @@
 	<stdlib.h>
 	<stdio.h>
 
-1585265081 source:/home/alymaged/Documents/FCI/parallel/assignments/ass2/search_engine-in-parallel/searchEngine/main.c
-	<stdlib.h>
+1585417839 source:/home/alymaged/Documents/FCI/parallel/assignments/ass2/search_engine-in-parallel/searchEngine/main.c
 	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<dirent.h>
 
